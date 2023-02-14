@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const process = require("process");
 const qrcode = require("qrcode-terminal");
-const { Client } = require("whatsapp-web.js");
+import { Client, LocalAuth } from "whatsapp-web.js";
 import { ChatGPTClient } from "@waylaidwanderer/chatgpt-api";
 
 const clientOptions = {
@@ -38,6 +38,7 @@ const prefixEnabled = process.env.PREFIX_ENABLED == "true";
 const prefix = "!gpt";
 
 const client = new Client({
+  authStrategy: new LocalAuth(),
   puppeteer: {
     executablePath: "/usr/bin/google-chrome",
     args: ["--no-sandbox"],
