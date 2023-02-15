@@ -9,12 +9,14 @@ import { ChatGPTClient } from "@waylaidwanderer/chatgpt-api";
 const clientOptions = {
   // (Optional) Support for a reverse  proxy for the completions endpoint (private API server).
   // Warning: This will expose your `openaiApiKey` to a third-party. Consider the risks before using this.
-  reverseProxyUrl: "https://chatgpt.hato.ai/completions",
+  //reverseProxyUrl: "https://chatgpt.hato.ai/completions",
+  reverseProxyUrl: "https://api.openai.com/v1/completions",
   // (Optional) Parameters as described in https://platform.openai.com/docs/api-reference/completions
   modelOptions: {
     // You can override the model name and any other parameters here.
     // model: 'text-chat-davinci-002-20221122',
-    model: "text-davinci-002-render",
+    // model: "text-davinci-002-render",
+    model: "text-davinci-003",
   },
   // (Optional) Set custom instructions instead of "You are ChatGPT...".
   // promptPrefix: 'You are Bob, a cowboy in Western times...',
