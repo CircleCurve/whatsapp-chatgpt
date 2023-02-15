@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "nodemon": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"yarn start\"",
-    "dev": "npx vite-node --watch src/index.ts",
+    "watch": "npx vite-node --watch src/index.ts",
+    "dev": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"yarn start\"",
     "start": "npx vite-node src/index.ts"
   },
   "author": "navopw",
