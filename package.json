@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx tsx watch src/index.ts",
+    "nodemon": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"yarn start\"",
+    "dev": "npx vite-node --watch src/index.ts",
     "start": "npx vite-node src/index.ts"
   },
   "author": "navopw",
@@ -16,5 +17,6 @@
     "puppeteer": "^19.4.1",
     "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "^1.18.4"
-  }
+  },
+  "devDependencies": {}
 }

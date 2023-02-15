@@ -4,6 +4,6 @@ services:
     build: .
     volumes:
       - .:/usr/src/app
-    command: sh -c "yarn install && yarn start"
+    command: sh -c "yarn install && yarn dev"
     ports:
       - 8031:3000
