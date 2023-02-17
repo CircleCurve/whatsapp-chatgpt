@@ -71,23 +71,44 @@ export const start = async () => {
     console.log("[Whatsapp ChatGPT] Browser Client is ready!");
   });
 
+  client.on("message_create", async (message: any) => {
+    // Fired on all message creations, including your own
+    if (!message.fromMe) return;
+
+    //message is send by me and with prefix !gpt
+    const prompt = filterMessage(message.body);
+    if (!prompt) return;
+    await handleMessage(message, prompt);
+  });
+
   // Whatsapp message
   client.on("message", async (message: any) => {
     if (message.body.length == 0) return;
     if (message.from == "status@broadcast") return;
 
-    if (prefixEnabled) {
-      if (message.body.startsWith(prefix)) {
-        // Get the rest of the message
-        const prompt = message.body.substring(prefix.length + 1);
-        await handleMessage(message, prompt);
-      }
-    } else {
-      await handleMessage(message, message.body);
-    }
+    const prompt = filterMessage(message.body);
+    if (!prompt) return;
+    await handleMessage(message, prompt);
+
+    // if (prefixEnabled) {
+    //   if (message.body.startsWith(prefix)) {
+    //     // Get the rest of the message
+    //     const prompt = message.body.substring(prefix.length + 1);
+    //     await handleMessage(message, prompt);
+    //   }
+    // } else {
+    //   await handleMessage(message, message.body);
+    // }
   });
 
   client.initialize();
+};
+
+const filterMessage = (text: string) => {
+  if (!prefixEnabled) return text;
+  if (!text.startsWith(prefix)) return;
+
+  return text.substring(prefix.length + 1);
 };
 
 let messagesInfo = {
